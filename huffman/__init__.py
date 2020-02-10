@@ -1,0 +1,1 @@
+from .huff import Compression

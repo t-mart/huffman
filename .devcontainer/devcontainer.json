@@ -1,0 +1,31 @@
+
+{
+	"name": "huffman",
+	"dockerFile": "Dockerfile",
+
+	"runArgs": [
+		// Comment out the next line to run as root instead. Linux users,
+		// update Dockerfile with your user's UID/GID if not 1000.
+		"-u", "vscode",
+
+		"-v", "/var/run/docker.sock:/var/run/docker.sock",
+		"-v", "c:/Users/tim/.ssh:/home/vscode/.ssh",
+		"-v", "c:/Users/tim/.gitignore:/home/vscode/.gitignore",
+		"-v", "c:/Users/tim/.gitconfig:/home/vscode/.gitconfig"
+	],
+
+	// Use 'settings' to set *default* container specific settings.json values on container create.
+	// You can edit these settings after create using File > Preferences > Settings > Remote.
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/workspaces/huffman/.venv/bin/python",
+		"remote.containers.workspaceMountConsistency": "delegated"
+	},
+
+	"postCreateCommand": "pip install --user pip-tools && sudo chmod 777 /var/run/docker.sock",
+
+	"extensions": [
+		"ms-python.python",
+		"ms-azuretools.vscode-docker"
+	]
+}
